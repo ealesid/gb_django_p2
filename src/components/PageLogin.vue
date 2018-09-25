@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col s12">
         <div class="card ">
-          <div class="card-content" v-if="!user || user.is_active">
+          <div class="card-content">
             <span class="card-title" v-if="user">Рады снова видеть Вас на нашем сайте</span>
             <div class="row">
               <div class="col s12 m4 l5">
@@ -37,7 +37,7 @@
             <template v-if="user">
               <p>Для завершения регистрации необходимо пройти по ссылке, отправленной на {{user.email}}</p>
               <hr>
-              <router-link :to="{name: 'main'}">На главную</router-link>
+              <router-link :to="{name: 'main'}" @click.native="userFetched(null)">На главную</router-link>
             </template>
           </div>
         </div>
@@ -47,7 +47,7 @@
 </template>
 
 <script>
-  import { mapActions, mapState, } from 'vuex'
+  import { mapActions, mapMutations, mapState, } from 'vuex'
   import M from 'materialize-css'
   
   export default {
@@ -64,6 +64,7 @@
     
     methods: {
       ...mapActions([ 'fetchUser', 'getLoggedIn', 'getRegisteredIn', ]),
+      ...mapMutations([ 'userFetched', ]),
     },
     
     created() {
