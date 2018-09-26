@@ -1,7 +1,9 @@
 from django.shortcuts import get_object_or_404
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from rest_auth.registration.views import SocialLoginView
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
-from rest_framework.permissions import AllowAny, IsAuthenticatedOrReadOnly
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from appAccounts.models import User
@@ -44,3 +46,7 @@ class UsersViewSet(viewsets.ModelViewSet):
     def exist(self, request, email, ):
         user = get_object_or_404(User, email=email)
         return Response(UsersSerializer(user).data, status=status.HTTP_200_OK)
+
+
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter

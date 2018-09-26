@@ -37,6 +37,7 @@ urlpatterns = [
     path('', main),
     path(r'api/v1/', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('auth/google/', include('appAccounts.urls')),
     path('auth/', include('rest_auth.urls')),
     path(r'accounts/', include('allauth.urls')),
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
