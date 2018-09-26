@@ -1,7 +1,7 @@
 <template>
   <div class="col s7 m9 l10 page-content">
     <div class="row">
-      <div class="col s12 m6 l4 product-item" v-for="product in products">
+      <div class="col s12 m6 l3 product-item" v-for="product in products">
         <div class="card hoverable">
           <div class="card-image">
             <img :src="product.image">

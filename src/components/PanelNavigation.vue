@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="card-action">
-        <a href="#">This is a link</a>
+        <router-link :to="{name: 'main'}">На главную</router-link>
       </div>
     </div>
 </template>

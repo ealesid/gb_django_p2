@@ -4,5 +4,5 @@ export const productsFetched = (state, data) => {
 
 export const userFetched = (state, data) => {
   console.log('userFetched ->\t', data);
-  data ? state.user = { ...data, isLoggedIn: false} : state.user = data
+  data && data.user ? state.user = { ...data.user, token: data.token, isLoggedIn: false} : state.user = data
 };

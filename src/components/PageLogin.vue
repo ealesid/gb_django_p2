@@ -3,8 +3,9 @@
     <div class="row">
       <div class="col s12">
         <div class="card ">
-          <div class="card-content">
-            <span class="card-title" v-if="user">Рады снова видеть Вас на нашем сайте</span>
+        <transition name="fade" mode="out-in">
+          <template v-if="!user">
+          <div class="card-content" key="login">
             <div class="row">
               <div class="col s12 m4 l5">
                 <div class="input-field">
@@ -22,7 +23,7 @@
                 <div class="file-field input-field">
                   <div
                     :class="user || (email && password) ? 'btn' : 'btn disabled'"
-                    @click="user ? getLoggedIn() : getRegisteredIn({email, password})"
+                    @click="user ? getLoggedIn() : getRegisteredIn({email, password1: password, password2: password})"
                   >
                     {{ user || !(email && password) ? 'Войти' : 'Продолжить' }}
                   </div>
@@ -30,8 +31,6 @@
               </div>
             </div>
             <div class="row">
-              <!--<div class="socials">Войти через: <a class="red-text hoverable" @click="googleLogin"><i class="fa fa-google-plus-square fa-3x"></i></a></div>-->
-              
               <div id="gSignInWrapper">
                 <span class="label">Войти через: </span>
                 <div id="customBtn" class="customGPlusSignIn hoverable">
@@ -40,16 +39,18 @@
                 </div>
               </div>
               <div id="name"></div>
-            
             </div>
           </div>
-          <div class="card-content" v-if="!user || !user.is_active">
-            <template v-if="user">
+          </template>
+          <template v-if="user && !user.is_active" >
+          <div class="card-content" key="loggedin">
+            <span class="card-title" v-if="user">Вы вошли как {{user.first_name ? user.first_name + user.last_name : user.email}}</span>
               <p>Для завершения регистрации необходимо пройти по ссылке, отправленной на {{user.email}}</p>
               <hr>
               <router-link :to="{name: 'main'}" @click.native="userFetched(null)">На главную</router-link>
-            </template>
           </div>
+          </template>
+        </transition>
         </div>
       </div>
     </div>
@@ -122,5 +123,19 @@
     /* Use the Roboto font that is loaded in the <head> */
     font-family: 'Roboto', sans-serif;
   }
-
+  
+  .fade-enter {
+    opacity: 0;
+  }
+  .fade-enter-active {
+    transition: opacity 1s;
+  }
+  .fade-leave {
+    /*opacity: 1;*/
+  }
+  .fade-leave-active {
+    transition: opacity .5s;
+    opacity: 0;
+  }
+  
 </style>

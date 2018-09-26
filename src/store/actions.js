@@ -65,16 +65,23 @@ export const getLoggedIn = async () => {
 };
 
 export const getRegisteredIn = async ({commit, }, user) => {
-  let response = await fetch(`${apiRoute}/users/`, {
+  let response = await fetch(`/auth/registration/`, {
     method: 'post',
     headers: {
       'Content-Type': 'application/json',
-      'X-CSRFToken': getCookie('csrftoken'),
     },
     body: JSON.stringify(user),
   });
-  response = await response.json();
-  if (response.email) {
+  // let response = await fetch(`${apiRoute}/users/`, {
+  //   method: 'post',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'X-CSRFToken': getCookie('csrftoken'),
+  //   },
+  //   body: JSON.stringify(user),
+  // });
+  if (response.ok) {
+    response = await response.json();
     commit('userFetched', response)
   }
   console.log('getRegisteredIn ->\t', response)
