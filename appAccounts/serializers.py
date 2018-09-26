@@ -6,7 +6,9 @@ from rest_framework.validators import UniqueValidator
 class UsersSerializer(ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ('email', 'password', 'date_joined', 'is_active', )
+        fields = (
+          'first_name', 'last_name', 'email', 'photo', 'password', 'date_joined', 'is_active',
+        )
 
     email = EmailField(
         required=True,

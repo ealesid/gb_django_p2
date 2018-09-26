@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'rest_auth',
     'rest_auth.registration',
 
-    'appAccounts',
+    'appAccounts.apps.AppaccountsConfig',
     'appMain',
 ]
 
