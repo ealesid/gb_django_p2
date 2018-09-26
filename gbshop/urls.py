@@ -26,11 +26,11 @@ from appMain.views import *
 
 router = routers.DefaultRouter()
 router.register(r'products', ProductsViewSet)
-# router.register(r'categories', ProductCategoriesViewSet)
-# router.register(r'lightsources', ProductLightSourcesViewSet)
-# router.register(r'manufacturers', ProductManufacturersViewSet)
-# router.register(r'resolutions', ProductResolutionsViewSet)
-# router.register(r'types', ProductTypesViewSet)
+router.register(r'categories', ProductCategoriesViewSet)
+router.register(r'lightsources', ProductLightSourcesViewSet)
+router.register(r'manufacturers', ProductManufacturersViewSet)
+router.register(r'resolutions', ProductResolutionsViewSet)
+router.register(r'types', ProductTypesViewSet)
 router.register('users', UsersViewSet)
 
 urlpatterns = [

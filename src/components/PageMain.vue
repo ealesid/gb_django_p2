@@ -7,7 +7,7 @@
             <img :src="product.image">
             <!--<img src="/static/img/projector01.jpg">-->
             <!--<span class="card-title">Card Title</span>-->
-            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
           </div>
           <div class="card-content">
             <strong v-text="product.name"></strong>
