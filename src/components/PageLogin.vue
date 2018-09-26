@@ -30,7 +30,17 @@
               </div>
             </div>
             <div class="row">
-              <div class="socials">Войти через: <a class="red-text hoverable"><i class="fa fa-google-plus-square fa-3x"></i></a></div>
+              <!--<div class="socials">Войти через: <a class="red-text hoverable" @click="googleLogin"><i class="fa fa-google-plus-square fa-3x"></i></a></div>-->
+              
+              <div id="gSignInWrapper">
+                <span class="label">Войти через: </span>
+                <div id="customBtn" class="customGPlusSignIn hoverable">
+                  <span class="icon"></span>
+                  <!--<span class="buttonText">Google</span>-->
+                </div>
+              </div>
+              <div id="name"></div>
+            
             </div>
           </div>
           <div class="card-content" v-if="!user || !user.is_active">
@@ -63,28 +73,54 @@
     },
     
     methods: {
-      ...mapActions([ 'fetchUser', 'getLoggedIn', 'getRegisteredIn', ]),
+      ...mapActions([ 'fetchUser', 'getLoggedIn', 'getRegisteredIn', 'startGoogleAuthApp', ]),
       ...mapMutations([ 'userFetched', ]),
     },
-    
-    created() {
-      M.updateTextFields()
+  
+    mounted: function () {
+      M.updateTextFields();
+      this.startGoogleAuthApp();
     }
   }
 </script>
 
 <style scoped>
   .page-content {
-    margin-top: 20%;
+    /*margin-top: 20%;*/
   }
-  .socials {
-    text-align: center;
+  
+  #customBtn {
+    display: inline-block;
+    background: white;
+    color: #444;
+    width: auto;
+    border-radius: 5px;
+    border: thin solid #888;
+    /*box-shadow: 1px 1px 1px grey;*/
+    white-space: nowrap;
   }
-  .socials > a {
+  #customBtn:hover {
     cursor: pointer;
-    line-height: 3em;
   }
-  i.fa {
+  span.label {
+    margin-right: 10px;
+  }
+  span.icon {
+    background: url('/static/img/g-normal.png') transparent 5px 50% no-repeat;
+    display: inline-block;
     vertical-align: middle;
+    width: 42px;
+    height: 24px;
   }
+  span.buttonText {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 0;
+    padding-right: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    /* Use the Roboto font that is loaded in the <head> */
+    font-family: 'Roboto', sans-serif;
+  }
+
 </style>

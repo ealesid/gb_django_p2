@@ -11,6 +11,7 @@ export default new Vuex.Store({
   mutations,
 
   state: {
+    client_id: '121471255218-ngm6pc28tmp1u3f800lpe0gri81iadqg.apps.googleusercontent.com',
     products: null,
     user: null,
   },

@@ -46,6 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
@@ -53,6 +60,19 @@ INSTALLED_APPS = [
     'appAccounts',
     'appMain',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,9 +82,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'gbshop.urls'
+LOGIN_REDIRECT_URL = "/"
 
 TEMPLATES = [
     {
@@ -137,3 +159,5 @@ STATICFILES_DIRS = [STATICFILES_DIR, ]
 
 MEDIA_URL = '/static/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+
+SITE_ID = 2
