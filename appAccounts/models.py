@@ -35,6 +35,9 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
     date_joined = models.DateField(verbose_name='date joined', default=now().date)
+    first_name = models.CharField(verbose_name='first name', max_length=30, blank=True)
+    last_name = models.CharField(verbose_name='last name', max_length=150, blank=True)
+    photo = models.URLField(blank=True)
     is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     groups = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True)
@@ -46,6 +49,10 @@ class User(AbstractBaseUser):
 
     def __str__(self):
         return self.email
+
+    def get_full_name(self):
+        """ Return the first_name plus the last_name, with a space in between. """
+        return '{} {}'.format(self.first_name, self.last_name).strip()
 
     def has_perm(self, perm, obj=None):
         """Does the user have a specific permission?"""
