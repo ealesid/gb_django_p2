@@ -6,7 +6,6 @@
           <div class="card-image">
             <img :src="product.image">
             <!--<img src="/static/img/projector01.jpg">-->
-            <!--<span class="card-title">Card Title</span>-->
             <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add_shopping_cart</i></a>
           </div>
           <div class="card-content">
@@ -14,7 +13,8 @@
             <p v-text="product.short_desc"></p>
           </div>
           <div class="card-action">
-            <a href="#">This is a link</a>
+            <p>{{ product.price }}</p>
+            <!--<a href="#">{{ product.price }}</a>-->
           </div>
         </div>
       </div>

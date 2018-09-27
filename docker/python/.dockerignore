@@ -1,0 +1,13 @@
+.git/
+.idea/
+docker/
+node_modules/
+src/
+temp/
+venv/
+
+.gitignore
+.dockerignore
+docker-compose.yml
+package*json
+webpack*

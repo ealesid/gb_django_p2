@@ -65,7 +65,7 @@ REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'appAccounts.serializers.UsersSerializer'
 }
 
-SITE_ID = 2
+SITE_ID = 4
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -126,9 +126,17 @@ WSGI_APPLICATION = 'gbshop.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    # },
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'gbshop',
+        'ENGINE': 'django.db.backends.postgresql',
+        'USER': 'dbuser',
+        'PASSWORD': 'postgresql',
+        'HOST': 'postgres',
+        'PORT': 5432,
     }
 }
 
@@ -170,7 +178,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [STATICFILES_DIR, ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = [STATICFILES_DIR, ]
 
 MEDIA_URL = '/static/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
